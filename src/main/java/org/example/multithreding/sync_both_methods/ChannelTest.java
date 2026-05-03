@@ -3,9 +3,9 @@ package org.example.multithreding.sync_both_methods;
 public class ChannelTest {
     public static void main(String[] args) throws InterruptedException {
         Channel channel = new Channel();
-        Thread mobileThread = new Thread(new Channel.MobileCall(channel));
-        Thread skypeThread = new Thread(new Channel.SkypeCall(channel));
-        Thread whatsAppThread = new Thread(new Channel.WhatsAppCall(channel));
+        Thread mobileThread = new Thread(new MobileCall(channel));
+        Thread skypeThread = new Thread(new SkypeCall(channel));
+        Thread whatsAppThread = new Thread(new WhatsAppCall(channel));
 
         mobileThread.start();
         skypeThread.start();

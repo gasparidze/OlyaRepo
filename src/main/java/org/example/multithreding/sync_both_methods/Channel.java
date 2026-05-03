@@ -35,43 +35,4 @@ public class Channel {
     private String getCurrentTime() {
         return LocalTime.now().toString();
     }
-
-    static class MobileCall implements Runnable {
-        private final Channel channel;
-
-        public MobileCall(Channel channel) {
-            this.channel = channel;
-        }
-
-        @Override
-        public void run() {
-            channel.talk("Мобильная связь", 3);
-        }
-    }
-
-    static class SkypeCall implements Runnable {
-        private final Channel channel;
-
-        public SkypeCall(Channel channel) {
-            this.channel = channel;
-        }
-
-        @Override
-        public void run() {
-            channel.talk("Skype", 2);
-        }
-    }
-
-    static class WhatsAppCall implements Runnable {
-        private final Channel channel;
-
-        public WhatsAppCall(Channel channel) {
-            this.channel = channel;
-        }
-
-        @Override
-        public void run() {
-            channel.talk("WhatsApp", 4);
-        }
-    }
 }
