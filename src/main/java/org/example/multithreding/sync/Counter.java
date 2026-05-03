@@ -9,6 +9,17 @@ package org.example.multithreding.sync;
  */
 public class Counter {
     private int count;
+    private static String description;
+
+    /**
+     * Также можно синхронизировать статические методы
+     * Здесь уже, т.к. метод статический и принадлежит классу, то и синхронзация будет происходить на мониторе класса
+     */
+    public static void init(){
+        synchronized (Counter.class) {
+            description = "Test Description";
+        }
+    }
 
     /**
      * counter++
@@ -33,11 +44,19 @@ public class Counter {
      * первый поток зашел в increment поставил замок, и пока increment не выполнит все свои 3 подоперации и не запишет в оперативку, замок не снимется
      * и когда increment выполни все свои подоперации и записал в оператику новое значение, замок снимается и другие потоки могут вызывать метод increment
      */
-    public synchronized void increment(){
-        count++;
+    public void increment(){
+        /**
+         * Синхронизированный блок
+         * и мы всегда синхронизируемся на мониторе какого-то объекта, в данном случае мы забираем монитор объекта Counter
+         * У каждого объекта есть свой монитор. Монитор - это менанизм достижения синхронизации между потоками.
+         *
+         */
+        synchronized (this) {
+            count++;
+        }
     }
 
-    public void decrement(){
+    public synchronized void decrement(){
         count--;
     }
 
