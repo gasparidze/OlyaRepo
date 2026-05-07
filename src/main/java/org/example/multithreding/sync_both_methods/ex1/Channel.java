@@ -1,4 +1,4 @@
-package org.example.multithreding.sync_both_methods;
+package org.example.multithreding.sync_both_methods.ex1;
 
 import java.time.LocalTime;
 
