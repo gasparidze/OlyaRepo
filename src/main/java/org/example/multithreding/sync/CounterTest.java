@@ -4,7 +4,7 @@ package org.example.multithreding.sync;
  * В методе main создадим 10 потока типа CounterThread, передав один и тот же объект Counter и запустим все потоки,
  * дождемся их выполнения и выведем на консоль текущее значение counter (счетчика)
  */
-public class CounterDemo {
+public class CounterTest {
     public static void main(String[] args) throws InterruptedException {
         Counter counter = new Counter();
         CounterThread counterThread1 = new CounterThread(counter);
