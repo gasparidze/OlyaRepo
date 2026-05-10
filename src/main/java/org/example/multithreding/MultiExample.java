@@ -3,7 +3,6 @@ package org.example.multithreding;
 public class MultiExample {
     public static void main(String[] args) throws InterruptedException {
         System.out.println(Thread.currentThread().getName());
-
         ThreadExample threadExample = new ThreadExample();
         threadExample.start();
 

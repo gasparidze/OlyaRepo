@@ -1,5 +1,7 @@
 package org.example.multithreding.sync;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Создать класс Counter с одним полем: count
  * Добавить методы:
@@ -9,6 +11,7 @@ package org.example.multithreding.sync;
  */
 public class Counter {
     private int count;
+//    private AtomicInteger counter = new AtomicInteger();
     private static String description;
 
     /**
@@ -54,13 +57,19 @@ public class Counter {
         synchronized (this) {
             count++;
         }
+//        counter.incrementAndGet();
     }
 
     public synchronized void decrement(){
         count--;
+//        counter.decrementAndGet();
     }
 
     public int getCount() {
         return count;
     }
+
+    //    public AtomicInteger getCount() {
+//        return counter;
+//    }
 }
