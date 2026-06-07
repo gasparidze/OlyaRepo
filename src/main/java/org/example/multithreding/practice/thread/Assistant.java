@@ -1,4 +1,8 @@
-package org.example.multithreding.practice;
+package org.example.multithreding.practice.thread;
+
+import org.example.multithreding.practice.Dump;
+import org.example.multithreding.practice.RobotDetail;
+import org.example.multithreding.practice.Scientist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,20 +37,23 @@ public class Assistant extends Thread{
 
     private List<RobotDetail> getRobotDetailsFromDump() {
         List<RobotDetail> details = new ArrayList<>();
-        int quantity = random.nextInt(4) + 1;
-        for (int i = 0; i < quantity; i++) {
-            RobotDetail detail = dump.takeDetail();
-            if (detail != null) {
-                details.add(detail);
+        synchronized (dump.getLock()) {
+            int quantity = random.nextInt(4) + 1;
+            for (int i = 0; i < quantity; i++) {
+                RobotDetail detail = dump.takeDetail();
+                if (detail != null) {
+                    details.add(detail);
+                }
             }
+            System.out.println(getName() + " Взял " + details.size() + " деталей");
         }
-        System.out.println(getName() + " Взял " + details.size() + " деталей");
-
         return details;
     }
 
     /**
      * Если ым хотим, чтобы для всех потоков ночь начиналось в однои то же время, то надо по нй и сихронизироваться всем потокам
+     *
+     * wait() всегда усупляет тот поток, который его вызвал, независимо от того, у какого объекта вызван wait()
      */
     private void waitNextNight() throws InterruptedException {
         synchronized (night.getLock()) {

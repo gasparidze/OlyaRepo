@@ -1,4 +1,7 @@
-package org.example.multithreding.practice;
+package org.example.multithreding.practice.thread;
+
+import org.example.multithreding.practice.DetailFactory;
+import org.example.multithreding.practice.Dump;
 
 import java.util.Random;
 
@@ -27,11 +30,13 @@ public class Factory extends Thread{
     }
 
     private void throwDetailsToFactory() {
-        int quantity = random.nextInt(4) + 1;
-        for (int i = 0; i < quantity; i++) {
-            dump.addDetail(DetailFactory.getRandomDetail());
+        synchronized (dump.getLock()) {
+            int quantity = random.nextInt(4) + 1;
+            for (int i = 0; i < quantity; i++) {
+                dump.addDetail(DetailFactory.getRandomDetail());
+            }
+            System.out.println(getName() + " Добавил " + quantity + " деталей");
         }
-        System.out.println(getName() + " Добавил " + quantity + " деталей");
     }
 
     private void waitNextNight() throws InterruptedException {
