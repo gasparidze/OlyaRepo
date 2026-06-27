@@ -2,13 +2,18 @@ package org.example.multithreding.thread_pool;
 
 import java.util.concurrent.*;
 
-public class ThreadPoolExample {
+public class ThreadPoolSubmit {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         /**
          * Рассмотрим основное метода ThreadPool:
          * 1) submit() - отправляет задачи на выполнение
          * 2) shutDown() - закрывает пул как ресурс, ждет выполнения всех задач, которые мы отпраивли в пул
          * 3) shutDownNow() - закрывает пул как ресурс, завершает все потоки и возвращает те задачи, которые не успели выполниться
+         * 4) awaitTermination() - принуждает поток, в котором он вызвался (в примере main) подождать до тех пор,
+         * пока не выполнится одно из 2х событий: либо threadPool прекратит свою работу, либо пройдет время,
+         * указанное в параметре метода awaitTermination, awaitTermination схожь с join(),
+         * awaitTermination вызывается всегда после shutDown()
+         *
          *
          * Обычно используеют shutDown(), т.к. хотим дождаться завершения всех задач
          * Для того, чтобы указать время, которое мы можем ожидать, есть метод awaitTermination()
@@ -28,7 +33,6 @@ public class ThreadPoolExample {
         System.out.println("Result: " + future.get());
         threadPool.shutdown();
         threadPool.awaitTermination(1L, TimeUnit.HOURS);
-
         System.out.println("main finishes");
     }
 }
