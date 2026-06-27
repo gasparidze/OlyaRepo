@@ -14,7 +14,6 @@ public class CashboxTest{
     public static void main(String[] args) {
         Queue<Cashbox> cashboxes = new ArrayDeque<>(List.of(new Cashbox(), new Cashbox()));
 
-
         new Thread(new BuyerThread(cashboxes)).start();
         new Thread(new BuyerThread(cashboxes)).start();
         new Thread(new BuyerThread(cashboxes)).start();
