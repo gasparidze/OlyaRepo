@@ -1,4 +1,4 @@
-package org.example.multithreding.synchronizers.latch;
+package org.example.multithreding.synchronizers.latch.black_friday;
 
 import java.util.concurrent.CountDownLatch;
 
