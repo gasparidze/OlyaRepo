@@ -38,7 +38,7 @@ public class PhaserAsCountDownLatch {
         @Override
         public void run() {
             System.out.println(Thread.currentThread().getName() + " выполняется...");
-            phaser.arrive();
+            phaser.arrive(); // работает так же как countDownLatch.countDown()
             // не останавливается и дальше продолжает выполнять команды
         }
     }
